@@ -1,0 +1,48 @@
+﻿id,case,country,status,ONSHORE,PORT,GRID,OFFTAKE,LOCAL,SMALL,SUPPORT,OUT,confidence,exclude_candidate,reason
+1,Hydrogen Offshore Production Europe (HOPE),DEU,DEMO,0,0,0,0.0,0.55,1.0,1.0,0.6,B,0,
+2,Brande Hydrogen project,DNK,DEMO,1,0,0,1.0,0.55,1.0,0.55,0.6,B,0,
+3,OceanH2,ESP,DEMO,0,0,0,0.0,0.55,1.0,0.55,0.6,B,0,
+4,Sealhyfe,FRA,DEMO,0,0,0,0.0,1.0,1.0,0.55,0.6,A,0,
+5,"AMpHytrite demonstrator, Port of Rotterdam, phase 1",NLD,DEMO,1,1,0,0.33,1.0,1.0,0.55,0.6,B,0,
+6,Deep Purple,NOR,DEMO,0,0,0,0.0,1.0,1.0,0.55,0.6,B,0,
+7,HyPilot project ,NOR,DEMO,1,1,1,0.33,1.0,1.0,0.55,0.6,B,0,
+8,HEAL - Hydrogen-based Energy Systems for Arctic Logistics,SWE,DEMO,1,0,1,0.33,1.0,1.0,1.0,0.6,C,1,
+9,Hyoffwind Zeebrugge,BEL,FID/Construction,1,1,1,1.0,1.0,1.0,0.55,0.9,A,0,
+10,"GET H2 Nukleus, phase 2",DEU,FID/Construction,1,1,1,1.0,0.55,0.67,1.0,0.9,A,0,
+11,H2Mare,DEU,FID/Construction,0,0,0,0.0,1.0,1.0,0.55,0.9,B,0,
+12,"GET H2 Nukleus, phase 3",DEU,FID/Construction,1,1,1,1.0,0.55,0.67,1.0,0.9,A,0,
+13,"GET H2 Nukleus, phase 1",DEU,FID/Construction,1,1,1,1.0,0.55,0.67,1.0,0.9,A,0,
+14,Lowestoft PowerPark hydrogen,GBR,FID/Construction,1,1,1,0.0,1.0,1.0,0.55,0.9,B,1,
+15,Holland Hydrogen - phase 1,NLD,FID/Construction,1,1,1,1.0,0.55,0.33,0.55,0.9,A,0,
+16,"DJEWELS Chemiepark - Delfzijl, Phase 1",NLD,FID/Construction,1,1,1,1.0,1.0,1.0,1.0,0.9,A,0,
+17,ELYgator,NLD,FID/Construction,1,1,1,1.0,0.55,0.33,1.0,0.9,A,0,
+18,"H2 Pilotanlage Lingen, phase 1",DEU,Operational,1,1,1,1.0,0.55,1.0,1.0,1.0,A,0,
+19,"H2 Pilotanlage Lingen, phase 2",DEU,Operational,1,1,1,1.0,0.55,1.0,1.0,1.0,A,0,
+20,H2RES - Orsted offshore wind,DNK,Operational,1,1,1,1.0,1.0,1.0,0.55,1.0,A,0,
+21,"European Energy, phase I",DNK,Operational,1,1,1,1.0,1.0,1.0,0.55,1.0,A,0,
+22,"European Energy, phase II",DNK,Operational,1,1,1,1.0,1.0,1.0,0.55,1.0,A,0,
+23,"North CCU HUB, phase 3 (Deltaurus 4)",BEL,Cancelled,1,1,1,0.33,1.0,0.33,0.0,0.0,C,0,?
+24,"Power-to-Methanol, Antwerp, phase 2",BEL,Cancelled,1,1,1,0.33,1.0,1.0,0.55,0.0,A,0,3
+25,"Hyport, phase 2",BEL,Cancelled,1,1,1,0.33,1.0,0.33,0.55,0.0,B,0,무발표
+26,Offshore-to-X,DEU,Dormant,0,0,0,0.0,0.55,0.33,0.0,0.3,C,0,무발표(휴면)
+27,AquaSector,DEU,Cancelled,0,0,0,0.0,0.55,0.33,0.0,0.0,B,0,5
+28,Port of Mukran,DEU,Cancelled,1,1,1,0.0,1.0,1.0,0.0,0.0,C,1,무발표
+29,Green Fuels hamburg,DEU,Cancelled,1,1,1,0.33,1.0,1.0,0.0,0.0,A,0,?
+30,MoU RWE-Arcelor Mittal North Sea plant,DEU,Cancelled,0,0,0,0.33,0.55,1.0,0.0,0.0,A,0,2
+31,Vallée Hydrogène Grand Ouest (VHyGO) - Saint-Nazaire,FRA,Cancelled,1,0,1,0.33,1.0,1.0,0.55,0.0,C,0,?
+32,"Gigastack-Hornsea 2, phase I",GBR,Cancelled,1,1,1,0.33,1.0,0.67,0.45,0.0,A,0,"3,6"
+33,Cerulean Winds - North Sea,GBR,Cancelled,0,0,0,0.0,0.55,0.0,0.0,0.0,C,0,전력공급 전환
+34,"Gigastack-Hornsea 2, phase II",GBR,Cancelled,1,1,1,0.33,1.0,0.33,0.45,0.0,A,0,"3,6"
+35,Dogger Bank Green Hydrogen,GBR,Cancelled,1,0,0,0.0,0.55,1.0,0.0,0.0,C,0,전력공급 전환
+36,Yara Sluiskil (Deltaurus 2) - Haddock,NLD,Dormant,1,1,1,1.0,1.0,1.0,0.45,0.3,C,0,무발표(휴면)
+37,North Sea Wind Power Hub,NLD,Dormant,0,0,0,0.0,0.55,0.0,0.0,0.3,C,0,무발표(휴면)
+38,Solar PV Plant port of Sines,PRT,Cancelled,1,1,1,0.0,0.0,0.0,0.0,0.0,A,0,2
+39,"Dylan, phase 2",GBR,Dormant,0,0,0,0.0,0.55,0.33,0.0,0.3,C,0,5?
+40,EI-H2 - Aghada (phase 2),IRL,Dormant,1,1,1,0.33,1.0,0.0,0.0,0.3,C,0,무발표
+41,EI-H2 - Aghada (phase 3),IRL,Dormant,1,1,1,0.33,0.0,0.33,0.0,0.3,C,0,무발표
+42,Green Marlin,IRL,Dormant,1,1,0,0.0,0.0,0.0,0.0,0.3,C,0,무발표
+43,"NortH2, phase 1",NLD,Dormant,1,1,1,0.33,0.55,0.0,0.0,0.3,B,0,?
+44,"DJEWELS Chemiepark - Delfzijl, Phase 2",NLD,Dormant,1,1,1,0.33,1.0,1.0,0.55,0.3,C,0,무발표(휴면)
+45,"MoU Shell - Mitsubishi, phase1",NLD,Dormant,1,1,0,0.33,0.0,0.0,0.0,0.3,C,0,무발표
+46,"NeptHyne, phase 2",POL,Dormant,0,0,0,0.0,0.55,0.33,0.0,0.3,C,0,무발표
+47,H2opZee,NLD,On hold,0,0,0,0.0,0.55,0.33,0.45,0.4,A,0,6
