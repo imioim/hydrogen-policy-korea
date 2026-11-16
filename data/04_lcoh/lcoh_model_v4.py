@@ -32,15 +32,15 @@ I=dict(
     grid_fee_usd_per_mwh=won(12),         # PPA 망이용료 가정
     curtail_usd_per_mwh=won(30),          # 제약전력 인수 단가 가정
     storage_usd_per_kg={'압축 현지':wonkg(400),'액화':wonkg(2800),'암모니아 반출':wonkg(1200)},
-    target_cf={'울산':0.42,'삼척':0.33},  # GWA 150m, 손실 17% 반영 순이용률
+    target_cf={'울산':0.43,'삼척':0.34},  # GWA 150m, 손실 17% 반영 순이용률(wind_resource_cf.xlsx: 0.4316, 0.3386)
     bench={'수입 분해수소 2030NZE':5.69,'수입 분해수소 2030중앙':7.23,'국내 연구 해외 도입(안지영·김기환 2024, 8,300원)':8300/1470,
            '수입 암모니아 2030NZE':3.79,'수입 암모니아 2030중앙':4.92},   # 2023년 열은 가정으로 재현되지 않아 제외(2026-11-16)
 )
 # 삼척 풍력 LCOE: 동일 설비비, 이용률 비 환산
-I['lcoe_usd_per_mwh']['삼척']={y:v*0.42/0.33 for y,v in I['lcoe_usd_per_mwh']['울산'].items()}
+I['lcoe_usd_per_mwh']['삼척']={y:v*0.43/0.34 for y,v in I['lcoe_usd_per_mwh']['울산'].items()}
 def set_path(name):
     I['lcoe_usd_per_mwh']['울산']=dict(I['lcoe_paths'][name])
-    I['lcoe_usd_per_mwh']['삼척']={y:v*0.42/0.33 for y,v in I['lcoe_paths'][name].items()}
+    I['lcoe_usd_per_mwh']['삼척']={y:v*0.43/0.34 for y,v in I['lcoe_paths'][name].items()}
 
 def load(name):
     df=pd.read_csv(os.path.join(HERE,name),comment='#'); return df['electricity'].to_numpy(float)

@@ -29,12 +29,12 @@
 | `01_cases/` | 유럽 해상풍력 연계 수전해 사업 40건(+제외 7건) 코딩표, fsQCA 입력·실행 스크립트(R)·결과·결과표, IEA 수소 프로젝트 데이터베이스 원본(2026년 6월판) |
 | `02_legal/` | EU(RED II·III, 위임규정 2023/1184·1185)와 한국(수소법·인증 고시·해상풍력법·분산에너지법·전기사업법) 조항 대조표 |
 | `03_site/` | 울산·동해·삼척 후보 해역의 수심(BADA2024), 해양용도구역(해양공간관리계획 고시 공간정보), 풍황(Global Wind Atlas 3.0), 계통 접속점, 입지 순위표와 가중치 민감도 |
-| `04_lcoh/` | 해상풍력 연계 수전해 LCOH 모형(Python)과 결과, 풍력·태양광 시간별 이용률(Renewables.ninja), 수입 그린수소 도착 단가 산출 시트 |
+| `04_lcoh/` | 해상풍력 연계 수전해 LCOH 모형 v4(Python, 발전단가 경로 A·B)와 결과, 풍력·태양광 시간별 이용률(Renewables.ninja), 수입 그린수소 도착 단가 산출 시트 |
 
 ## 재현
 
 - fsQCA: `Rscript data/01_cases/fsqca_run_v4.R` (R, QCA 패키지. 입력 파일과 같은 폴더에서 UTF-8 로캘로 실행)
-- LCOH: `python data/04_lcoh/lcoh_model_v3.py` (numpy, pandas)
+- LCOH: `python data/04_lcoh/lcoh_model_v4.py` (numpy, pandas)
 - 입지 계산 절차: `data/03_site/bathymetry_zoning_v2.xlsx`의 '방법' 시트
 
 ## 포함하지 않은 자료
