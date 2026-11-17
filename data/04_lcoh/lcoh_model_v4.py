@@ -87,9 +87,12 @@ def lcoh(gen, mode, capex, lcoe, ratio, storage='압축 현지', site=None, g=No
     c=(ann+stack+opex+elec-rev)/H2 + I['water_usd_per_kg'] + I['storage_usd_per_kg'][storage]
     return dict(lcoh=c, cf_elz=cf_elz, kg_per_kw=H2, elec_share=(elec-rev)/H2/c if c>0 else np.nan)
 
+# 태양광 발전단가(원/kWh): 2026년은 '26년 제1차 태양광 고정가격계약 경쟁입찰 공고(신·재생에너지센터 공고 제2026-23호, 2026.7.16.)의 육지 상한가 147,686원/MWh.
+# 2030·2035년은 풍력 경로 A와 같은 비율(150/175.1, 115/175.1)로 내려간다고 둔 저자 가정.
+SOLAR_LCOE_WON={'2026':147.686,'2030':round(147.686*150/175.1,1),'2035':round(147.686*115/175.1,1)}
 def hybrid_ws(site, year, capex, solar_ratio, elz_ratio, sell=False):
     """풍력 1kW + 태양광 solar_ratio kW → 수전해 elz_ratio kW. 전력 단가는 풍력 LCOE와 태양광 LCOE 가중."""
-    solar_lcoe=won({'2026':120,'2030':105,'2035':90}[year])   # 태양광 단가 가정(2026 입찰 상한 범위, 출처 보완 필요)
+    solar_lcoe=won(SOLAR_LCOE_WON[year])
     gen=WIND[site]+solar_ratio*SOLAR[site]
     w_e=WIND[site].sum(); s_e=solar_ratio*SOLAR[site].sum()
     lcoe=(w_e*I['lcoe_usd_per_mwh'][site][year]+s_e*solar_lcoe)/(w_e+s_e)
@@ -134,11 +137,11 @@ if __name__=='__main__':
                     r=hybrid_ws(s,'2035',1000,sr,1.0,sell); print(f"  {s} 태양광 {sr}배 {'판매' if sell else '직결'}: LCOH {r['lcoh']:.2f} CF {r['cf_elz']:.2f}")
     set_path('A 입찰가')
 
-    print('\n== 태양광 단독 직결 (2035, 1,000 $/kW, 태양광 발전단가 90원/kWh; 경로와 무관) ==')
+    print(f'\n== 태양광 단독 직결 (2035, 1,000 $/kW, 태양광 발전단가 2035년 {SOLAR_LCOE_WON['2035']}원/kWh; 경로와 무관) ==')
     rows_s=[]
     for s_ in ['울산','삼척']:
         sol=SOLAR[s_]; print(f"  {s_}: 태양광 연평균 CF {sol.mean():.3f}, 출력>0 시간 {int((sol>0).sum())} h, 정격 50% 이상 {int((sol>=0.5).sum())} h")
         for ratio in [1.0,0.7,0.5]:
-            r=lcoh(sol,'direct',1000,won(90),ratio); print(f"    용량비 {ratio}: LCOH {r['lcoh']:.2f} 수전해 CF {r['cf_elz']:.2f}")
+            r=lcoh(sol,'direct',1000,won(SOLAR_LCOE_WON['2035']),ratio); print(f"    용량비 {ratio}: LCOH {r['lcoh']:.2f} 수전해 CF {r['cf_elz']:.2f}")
             rows_s.append(dict(site=s_,capex_case='2035',capex=1000,mode='solar_only_direct',ratio=ratio,storage='압축 현지',lcoh=round(r['lcoh'],3),cf_elz=round(r['cf_elz'],3),elec_share=round(r['elec_share'],3),kg_per_kw=round(r['kg_per_kw'],1)))
     pd.DataFrame(rows_s).to_csv('lcoh_solar_only_v4.csv',index=False)

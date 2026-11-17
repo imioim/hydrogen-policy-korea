@@ -52,9 +52,10 @@ Journal article PDFs are not included (copyright). The IEA database files are in
 ### data/04_lcoh — 수소 단가 / LCOH
 | 파일 | 내용 | 출처·비고 |
 |---|---|---|
-| lcoh_model_v4.py | LCOH 모형 v4(USD, 환율 1,470원/USD, 운전 5방식, cf^a 보정). 풍력 발전단가 두 경로(A 입찰가: 2026년 175원/kWh 상한가에서 150·115원; B 비용: 195·165·135원), 비교행 C(안지영·김기환 2024의 전력 가정 290.58원/kWh·가동률 0.90), 수입 비교 기준 2030년 두 열과 국내 연구 기준값 5.65 USD/kg. 순이용률 입력 울산 0.43·삼척 0.34(wind_resource_cf.xlsx의 0.4316·0.3386) | 저자, 2026-11-16 |
+| lcoh_model_v4.py | LCOH 모형 v4(USD, 환율 1,470원/USD, 운전 5방식, cf^a 보정). 풍력 발전단가 두 경로(A 입찰가: 2026년 175원/kWh 상한가에서 150·115원; B 비용: 195·165·135원), 비교행 C(안지영·김기환 2024의 전력 가정 290.58원/kWh·가동률 0.90), 수입 비교 기준 2030년 두 열과 국내 연구 기준값 5.65 USD/kg. 순이용률 입력 울산 0.43·삼척 0.34(wind_resource_cf.xlsx의 0.4316·0.3386). 태양광 발전단가는 2026년 제1차 태양광 고정가격계약 경쟁입찰 공고(신·재생에너지센터 공고 제2026-23호, 2026.7.16.)의 육지 상한가 147,686원/MWh, 2030·2035년은 풍력 경로 A와 같은 비율로 하락 가정(126.5·97.0원/kWh) | 저자, 2026-11-17 |
 | lcoh_results_v4.csv | 336개 조합(경로 2 × 지역 2 × 설비비 4 × 운전·용량비 7 × 저장 3) 결과 | 저자 |
-| lcoh_run_v4.txt | 실행 출력(보정 지수, 표, 비교행 C, 제약전력, 하이브리드) | 저자 실행 |
+| lcoh_run_v4.txt | 실행 출력(보정 지수, 표, 비교행 C, 제약전력, 풍력+태양광 하이브리드, 태양광 단독) | 저자 실행 |
+| lcoh_solar_only_v4.csv | 태양광 단독 직결 6개 조합(2035년, 울산·삼척 × 용량비 1.0/0.7/0.5) 결과 | 저자 |
 | lcoh_model_v3.py, lcoh_results_v3.csv | v3 모형·결과(경로 A만, 순이용률 0.42/0.33). 이력 | 이력 |
 | wind_ulsan_2019.csv (35.45N 129.75E), wind_samcheok_2019.csv (37.31N 129.55E), solar_ulsan_2019.csv (35.5N 129.3E), solar_samcheok_2019.csv (37.4N 129.15E) | 2019년 시간별 이용률, MERRA-2, 풍력 V164 8MW 80m, 태양광 35° 손실 10% | Renewables.ninja (Staffell & Pfenninger 2016; Pfenninger & Staffell 2016). **CC BY-NC 4.0** — 비상업 이용·출처 표기 조건 |
 | lcoh_measured_series_v3.xlsx | 입력값·월별 시계열·운전방식·제약전력·하이브리드·벤치마크 | 저자 |
@@ -62,7 +63,7 @@ Journal article PDFs are not included (copyright). The IEA database files are in
 
 ## 재현 / Reproduction
 - fsQCA: `Rscript data/01_cases/fsqca_run_v4.R` (fsqca_input_v4.csv와 같은 폴더에서). 입력 CSV가 UTF-8(BOM)이므로 UTF-8 로캘에서 실행한다. Linux/macOS: `LC_ALL=C.UTF-8 Rscript fsqca_run_v4.R`; Windows PowerShell: 실행 전 `$env:LANG="ko_KR.UTF-8"`. 로캘이 맞지 않으면 R이 25행만 읽고 멈춘다.
-- LCOH: `python data/04_lcoh/lcoh_model_v4.py` (ninja CSV 4개와 같은 폴더). numpy, pandas 필요. 결과는 lcoh_results_v4.csv로 저장된다.
+- LCOH: `python data/04_lcoh/lcoh_model_v4.py` (ninja CSV 4개와 같은 폴더). numpy, pandas 필요. 결과는 lcoh_results_v4.csv와 lcoh_solar_only_v4.csv로 저장된다.
 - 입지: bathymetry_zoning_v2.xlsx '방법' 시트의 절차. geopandas, shapely, scipy 사용.
 
 ## 이용 조건 / Licensing
@@ -73,6 +74,7 @@ Journal article PDFs are not included (copyright). The IEA database files are in
 - KIGAM 화면 캡처: 참고용, 원자료는 지오빅데이터 오픈플랫폼(https://data.kigam.re.kr).
 
 ## 변경 기록 / Changelog
+- 2026-11-17: LCOH v4의 태양광 발전단가를 저자 가정(120·105·90원/kWh)에서 2026년 제1차 태양광 고정가격계약 경쟁입찰 상한가(147.7원/kWh) 기준으로 교체(2030·2035년은 풍력 경로 A와 같은 비율로 하락). 태양광 단독 직결 계산과 lcoh_solar_only_v4.csv 추가. 풍력만 쓰는 구성의 결과(lcoh_results_v4.csv)는 변동 없음.
 - 2026-11-16: fsQCA v4. 해상풍력 연계가 아닌 4건(2, 3, 6, 7) 제외로 본 분석 40건. 재코딩 6건(9, 15, 18, 19, 24, 36)을 사업자·정부 원자료로 확인해 반영, 5·21은 확인 뒤 유지. 코딩표·입력·스크립트·결과·결과표 v4 추가, v3 파일은 이력으로 보존. IEA DB 원본 2종 추가(CC BY 4.0). 수입 수소 비교 기준에서 2023년 열 제외(가정으로 재현되지 않음). 법령 대조표의 11차 전력수급기본계획 행 확인 사항 기록. LCOH v4 추가(경로 A·B, 비교행 C)하고 순이용률 입력을 0.42/0.33에서 0.43/0.34로 정정(풍황 시트와 일치). 입지 재계산: 부유식 수심 범위 50~1,000m, 고정식 띠 50m 미만(World Bank Group 2019 기준).
 - 2026-11-09: 수입 수소 도착 단가 산출 시트 추가(imported_hydrogen_delivered_cost_v1.xlsx). 코딩표 DEMO 소속값 0.6으로 통일, 27(AquaSector)·35(Dogger Bank) 비고 보완. 입지 v2(BADA·용도구역 재계산, 삼척 남부 외측 수심 점수 0.9→0.7). 비교 기준을 수입 분해수소 하나로 통일.
 - 2026-10-26: 코딩표 최종(사유 변경 27→5, 30→2; 휴면 0.3 조정 26·36·37; 제외 8·14·28). LCOH v3(USD, 실측 시계열).
