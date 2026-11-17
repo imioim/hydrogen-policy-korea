@@ -133,3 +133,12 @@ if __name__=='__main__':
                 for sell in [False,True]:
                     r=hybrid_ws(s,'2035',1000,sr,1.0,sell); print(f"  {s} 태양광 {sr}배 {'판매' if sell else '직결'}: LCOH {r['lcoh']:.2f} CF {r['cf_elz']:.2f}")
     set_path('A 입찰가')
+
+    print('\n== 태양광 단독 직결 (2035, 1,000 $/kW, 태양광 발전단가 90원/kWh; 경로와 무관) ==')
+    rows_s=[]
+    for s_ in ['울산','삼척']:
+        sol=SOLAR[s_]; print(f"  {s_}: 태양광 연평균 CF {sol.mean():.3f}, 출력>0 시간 {int((sol>0).sum())} h, 정격 50% 이상 {int((sol>=0.5).sum())} h")
+        for ratio in [1.0,0.7,0.5]:
+            r=lcoh(sol,'direct',1000,won(90),ratio); print(f"    용량비 {ratio}: LCOH {r['lcoh']:.2f} 수전해 CF {r['cf_elz']:.2f}")
+            rows_s.append(dict(site=s_,capex_case='2035',capex=1000,mode='solar_only_direct',ratio=ratio,storage='압축 현지',lcoh=round(r['lcoh'],3),cf_elz=round(r['cf_elz'],3),elec_share=round(r['elec_share'],3),kg_per_kw=round(r['kg_per_kw'],1)))
+    pd.DataFrame(rows_s).to_csv('lcoh_solar_only_v4.csv',index=False)
